@@ -28,6 +28,10 @@ var version = 0.1;
 window._gaq = window._gaq || [];
 
 (function() {
+  requirejs(['spv', 'view_serv', 'env'], function(spv, view_serv, env) {
+    view_serv.handleDocument(window.document, env);
+  });
+
 	requirejs(['js/App', 'pv', 'env'], function(App, pv, env) {
 		//app thread;
 		var views_proxies = new pv.views_proxies.Proxies();

@@ -47,6 +47,21 @@ var serv = {};
 
 })();
 
+serv.handleDocument = function(doc, env) {
+  var list = doc.documentElement.classList;
+	//
+	if (env.touch_support){list.add('touch-screen');}
+
+	if (env.cross_domain_allowed) {list.add('cross-domain-allowed');}
+
+	if (serv.css.transform){
+		list.add('yes-transform_support');
+	} else {
+		list.add('no-transform_upport');
+	}
+
+};
+
 var loadImage = (function() {
 	var loaded_images = {};
 	var images_callbacks = {};
