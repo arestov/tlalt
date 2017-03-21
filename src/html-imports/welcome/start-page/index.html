@@ -1,0 +1,28 @@
+<style>
+.start-screen{
+	padding-bottom:1.5rem;
+	}
+.full-page .start-screen{
+	padding: 0 1rem 1.5rem;
+	}
+.page-scheme .start-screen{
+	padding-top: 1rem;
+	}
+</style>
+
+<div class="complex-page_material start-screen"
+  id="start-screen" pv-foreign>
+
+  <p class="search-desc">
+    <span class="lang localize-trysearches desc">try to search</span>
+    <a
+      id='hint-query'
+      class="hint-query js-serv"
+      pv-text="{{nice_artist_hint}}"
+      pv-anchor='hint-query'
+      pv-events="click::requestSearchHint mouseout::changeSearchHint">Query</a>
+
+  </p>
+
+  <!--pv-replace sample_name:view_sources-->
+</div>

@@ -1,4 +1,3 @@
-var su, seesu;
 (function(){
 "use strict";
 requirejs.config({
@@ -8,8 +7,6 @@ requirejs.config({
 	},
 	map: {
 		'*': {
-			su: 'js/seesu',
-
 			pv: 'js/libs/provoda/provoda',
 			View: 'js/libs/provoda/View',
 
@@ -26,46 +23,16 @@ requirejs.config({
 	},
 	waitSeconds: window.tizen && 0
 });
-var seesu_version = 4.97;
 
+var version = 0.1;
 window._gaq = window._gaq || [];
 
 (function() {
-	var cbp;
-	var opera = window.opera;
-	var chrome = window.chrome;
-	if (window.chrome && chrome.extension){
-		cbp = chrome.extension.getBackgroundPage();
-	} else if (window.opera && opera.extension && opera.extension.bgProcess){
-		cbp = opera.extension.bgProcess;
-	}
-	//если у приложения не бывает вспслывающих окон, то интерфейс должен создаваться на странице этого окна
-	var need_ui = (!cbp || cbp != window) && (!opera || !opera.contexts);
-	if (need_ui){
-		requirejs(['spv', 'view_serv'], function(spv, view_serv) {
-			view_serv.handleDocument(window.document);
-		});
-	}
-	if (!need_ui){
-		if (opera){
-			window.opera_extension_button = opera.contexts.toolbar.createItem( {
-					disabled: false,
-					title: "Seesu - search and listen music",
-					icon: "icons/icon18.png",
-					popup:{
-						href: "index.html",
-						width: 600,
-						height: 570
-					}
-				} );
-			opera.contexts.toolbar.addItem( window.opera_extension_button );
-		}
-	}
-	requirejs(['su', 'pv', 'env'], function(SeesuApp, pv, env) {
+	requirejs(['js/App', 'pv', 'env'], function(App, pv, env) {
 		//app thread;
 		var views_proxies = new pv.views_proxies.Proxies();
 		window.views_proxies = views_proxies;
-		window.appModel = su = seesu  = new SeesuApp({
+		window.appModel = new App({
 			_highway: {
 				models_counters: 1,
 				sync_sender: new pv.SyncSender(),
@@ -73,25 +40,16 @@ window._gaq = window._gaq || [];
 				models: {},
 				calls_flow: new pv.CallbacksFlow(window),
 				proxies: views_proxies,
-				env: env
+				env: env,
 			}
-		}, seesu_version);
+		}, version);
 
-		if (need_ui) {
-			initViews(window.appModel, views_proxies, window, false, true);
-		}
+		initViews(window.appModel, views_proxies, window, false);
 	});
 
-	if (need_ui) {
-		requirejs(['js/views/AppView', 'pv', 'spv'], function() {
-			// preload modules
-		});
-	}
-
-	function initViews(appModel, proxies, win, can_die, need_exposed) {
+	function initViews(appModel, proxies, win, can_die) {
 		//ui thread;
 		requirejs(['js/views/AppView', 'pv', 'spv', 'js/libs/BrowseMap'], function(AppView, pv, spv, BrowseMap) {
-			appModel.updateLVTime(); // useless?
 
 			var proxies_space = Date.now();
 			proxies.addSpaceById(proxies_space, appModel);
@@ -99,13 +57,6 @@ window._gaq = window._gaq || [];
 			var doc = win.document;
 
 			initMainView();
-
-			if (!need_exposed) {
-				return;
-			}
-
-			initExposedView();
-			return;
 
 			function initMainView() {
 				window.root_bwlev = BrowseMap.hookRoot(mpx.md);
@@ -116,12 +67,6 @@ window._gaq = window._gaq || [];
 					view = null;
 				});
 				view.requestAll();
-			}
-
-			function initExposedView() {
-				var exposed_view = new AppView.AppExposedView(options(true), {d: doc, can_die: can_die});
-				mpx.addView(exposed_view, 'exp_root');
-				exposed_view.requestAll();
 			}
 
 			function options(usual_flow) {

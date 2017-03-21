@@ -83,7 +83,7 @@ gulp.task('js', function() {
 				View: 'js/libs/provoda/View',
 
 				spv: 'js/libs/spv',
-				app_serv: "js/app_serv",
+				// app_serv: "js/app_serv",
 				localizer: 'js/libs/localizer',
 				view_serv: "js/views/modules/view_serv",
 				cache_ajax: 'js/libs/cache_ajax',
@@ -95,7 +95,7 @@ gulp.task('js', function() {
 		}
 	};
 
-	return gulp.src('loader.js')
+	return gulp.src('main.js')
 		// .pipe(sourcemaps.init())
 		.pipe(rjs(optimizerOptions))
 		// .pipe(sourcemaps.write('.'))
@@ -133,8 +133,8 @@ combo('opera_popup', extend(chromeExtension('opera_popup'), {
 		'dist-envs/' + 'opera_popup'
 	),
 	'js': copy('js/**/*', 'dist-envs/' + 'opera_popup' + '/js'),
-	'js-loader': copy(
-		'./loader.js',
+	'js-main': copy(
+		'./main.js',
 		'dist-envs/' + 'opera_popup'
 	),
 }));
@@ -219,7 +219,7 @@ function common(env) {
 		css: [['css'],
 			copy('dist/combined.css', 'dist-envs/' + env + '/dist')],
 		js: [['js'],
-			copy('dist/loader.js', 'dist-envs/' + env + '/dist')],
+			copy('dist/main.js', 'dist-envs/' + env + '/dist')],
 		images: copy('i/**/*', 'dist-envs/' + env + '/i'),
 		'js-sep': copy('js-sep/**/*', 'dist-envs/' + env + '/js-sep')
 	};

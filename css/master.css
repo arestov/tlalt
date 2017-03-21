@@ -1,0 +1,87 @@
+html{
+	font-size:14px;
+}
+body{
+	font-size:14px;
+	margin:0;
+	padding:0;
+	width: 760px;
+
+	height:596px;
+	color:transparent;
+
+	font-family: Arial, Helvetica ,sans-serif;
+	line-height:1.5;
+
+	}
+.theme--dark body{
+	color:#E6E6E6;
+}
+
+.hidden {display: none}
+
+body .surf_nav{
+	background-color: transparent;
+	}
+
+.theme--dark body .surf_nav{
+	background-color:#000;
+  }
+
+#slider-materail{
+	position: relative;
+	z-index:2;
+	background:transparent;
+	}
+
+.app-loading-mark{
+	height: 1.72rem;
+	width: 1.72rem;
+	margin-left: -0.86rem;
+	position: absolute;
+	top: 0.5rem;
+	left: 50%;
+	}
+
+	.app-loaded .app-loading-mark{
+		display: none;
+		}
+
+#pages_area_width_streamer-wrapper {
+	position: absolute;
+	left:0;
+	right: 0;
+	z-index: -10;
+	visibility: hidden;
+	}
+	#pages_area_width_streamer {
+		width: 100%;
+		border: 0;
+		height: 1px;
+
+		}
+
+
+.big_spinner:after {
+	position: absolute;
+	top:0;
+	left:0;
+	content: url(../i/spinner.svg);
+	height: 1.72rem;
+	width: 1.72rem;
+	pointer-events: none;
+}
+
+.small_spiner:after {
+	position: absolute;
+	top:0;
+	left:0;
+	content: url(../i/spinner.svg);
+	height: 1.143rem;
+	width: 1.143rem;
+	pointer-events: none;
+}
+
+.keys-navigation-focus{
+	box-shadow: 0 0 3pt 2pt orange;
+	}
