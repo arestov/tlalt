@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html class="not-as-application theme--dark">
+  <head>
+	<meta charset="utf-8">
+	<meta name="google" content="notranslate" />
+	<title>Truckloads</title>
+	<link rel="shortcut icon" id="dynamic-favicon"  href="icons/icon16.png"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="dist/combined.css">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport"  content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" />
+	<script data-main="loader" src="js-sep/require-2.2.0.min.js"></script>
+
+<!--
+
+<div class="preview_area" pv-nest="recomm_releases">
+	<div class="area_for_button" pv-anchor="button_area">
+		<div class="area-button" pv-anchor='big_button'>
+			<span pv-text="{{nav_title}}">Albums</span>
+		</div>
+		<div class="area-description" >
+			<div class="desc_prevw_list albums_previews" pv-anchor="listc"></div>
+		</div>
+	</div>
+	<div class="pl-auth-con" pv-anchor="auth_con"></div>
+</div>
+-->
+  </head>
+
+  <body>
+	<div id="ui-samples" style="display:none">
+		<!--import-include('./components.html')-->
+	</div>
+<div id="slider">
+	<div class="navs ">
+		<div class="appnav_wrap">
+			<a
+					class="nav-item np-button hidden"
+					pv-props="title:{{now_playing_text}}"
+					pv-class="
+						hidden: !now_playing_text
+						nav-button: !viewing_playing
+						np-button-nh_intend: {{ !nav_helper_is_needed && viewing_playing && (played_playlists_length > 1) }}
+						player-played: playing
+						np-button-can_ff: {{ nav_helper_is_needed && !viewing_playing }}
+					"
+					pv-events="click::suggestNavHelper"
+					pv-type="{{!viewing_playing && 'way-point'}}"
+					><span class="np"></span></a>
+			<div class="daddy not-inited">
+				<span class="nnav nav-start" title="Start page" id="start_search"><b></b></span>
+
+			</div>
+		</div>
+		<div class="app-loading-mark"></div>
+
+	</div>
+	<div id="slider-materail" class="shadowed">
+  	<div class="screens" id="screens">
+  		<div id="pages_area_width_streamer-wrapper">
+  			<iframe src="about:blank" id="pages_area_width_streamer"></iframe>
+  		</div>
+  		<div class="app_map_con">
+  			<div class="shared-parts">
+          <!--import-include('./html-imports/welcome/form.html')-->
+  			</div>
+  			<div
+  				id="root_level"
+  				class="complex-page root_level full-page can_be_animated"
+  				pv-foreign
+  				pv-class="
+  					inactive-page: {{ current_lev_num != $lev_num }}
+  					full-page: {{ current_lev_num == $lev_num }}
+  					page-scheme: {{ (current_lev_num - 1) == $lev_num }}
+  					can_be_animated: !disallow_animation"
+  				pv-anchor="con">
+  				<div
+  					class="complex-page-scroll_con"
+  					pv-anchor="scroll_con">
+            <!--import-include('./html-imports/welcome/start-page/index.html')-->
+  			  </div>
+  			</div>
+      </div>
+    </div>
+	</div>
+</div>
+</body>
+</html>
