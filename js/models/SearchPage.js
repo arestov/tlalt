@@ -10,14 +10,13 @@ var SearchPage = pv.behavior({
   }],
   main_list_name: 'loads_list',
   model_name: 'loads_search_page',
-  'nest_rqc-loads_list': '^loads/[:_id]',
+  'nest_rqc-loads_list': '^loads/[:id]',
   'nest_req-loads_list': [
     [{
       is_array: true,
-      source: 'similartags.tag',
+      source: 'items',
       props_map: {
-        count: null,
-        name: null
+        id: 'id',
       }
     }],
     ['#truckloads', [
