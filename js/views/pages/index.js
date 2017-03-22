@@ -5,13 +5,13 @@ var SearchPageView = require('./SearchPageView');
 // var SearchPageView = require('./SearchPageView');
 
 return {
-	// $default: coct.ListOfListsView,
-	start_page : StartPageView,
+  // $default: coct.ListOfListsView,
+  start_page : StartPageView,
   loads_search_page: SearchPageView,
-	// invstg: SearchPageView,
-	// playlist: {
-	// 	'main': SongsListView,
-	// 	'all-sufficient-details': SongsListView.SongsListDetailedView,
-	// },
+  // invstg: SearchPageView,
+  // playlist: {
+  // 	'main': SongsListView,
+  // 	'all-sufficient-details': SongsListView.SongsListDetailedView,
+  // },
 };
 })
