@@ -5,6 +5,7 @@ var spv = require('spv');
 
 var BrowseMap = require('js/libs/BrowseMap');
 var SearchPage = require('./SearchPage');
+var LoadItem = require('./LoadItem');
 
 var pvUpdate = pv.update;
 
@@ -20,16 +21,18 @@ var StartPage = spv.inh(BrowseMap.Model, {
   },
   model_name: 'start_page',
   zero_map_level: true,
-  // sub_pager: {
-  // 	by_type: {
-  // 		query: [
-  //
-  // 		],
-  // 	},
-  // 	type: {
-  // 		queries: 'query',
-  // 	}
-  // },
+  sub_pager: {
+  	by_type: {
+  		load: [
+        LoadItem, null, {
+          id: 'decoded_name'
+        }
+  		],
+  	},
+  	type: {
+  		loads: 'load',
+  	}
+  },
   sub_page: {
     'search': {
       constr: SearchPage,
