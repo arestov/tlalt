@@ -4,6 +4,7 @@ var pv = require('pv');
 var spv = require('spv');
 
 var BrowseMap = require('js/libs/BrowseMap');
+var SearchPage = require('./SearchPage');
 
 var pvUpdate = pv.update;
 
@@ -22,13 +23,19 @@ var StartPage = spv.inh(BrowseMap.Model, {
 	// sub_pager: {
 	// 	by_type: {
 	// 		query: [
-	//
+  //
 	// 		],
 	// 	},
 	// 	type: {
 	// 		queries: 'query',
 	// 	}
-	// }
+	// },
+  sub_page: {
+		'search': {
+			constr: SearchPage,
+			title: [[]],
+		},
+	}
 });
 
 return StartPage;
