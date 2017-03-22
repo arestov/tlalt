@@ -6,6 +6,7 @@ var route = require('./modules/route');
 var prepare = require('js/libs/provoda/structure/prepare');
 var BrowseMap = require('./libs/BrowseMap');
 var navi = require('./libs/navi');
+var cache_ajax = require('cache_ajax');
 
 var AppModelBase = require('./models/AppModelBase');
 var StartPage = require('./models/StartPage');
@@ -25,10 +26,10 @@ var AppRoot = spv.inh(AppModelBase, {
     self.version = version;
     var app_env = self._highway.env;
 
-    self.resortQueueFn = function () {
+    var resortQueue = resortAppQueue(self);
 
-    };
-    initAPIs(self);
+    self.resortQueueFn = resortQueue;
+    self.addQueueFn =  initAPIs(self, app_env, cache_ajax, resortQueue);
 
     self.start_page = self.initChi('start__page');
     self.initMapTree(self.start_page, true, navi);
@@ -66,6 +67,12 @@ var AppRoot = spv.inh(AppModelBase, {
   getCommaParts: route.getCommaParts,
 
 });
+
+function resortAppQueue(app) {
+	return function resortQueue(queue) {
+		app.resortQueue(queue);
+	};
+};
 
 function handleWindowURL(self, app_env, navi) {
   if (app_env.needs_url_history){

@@ -8,7 +8,7 @@ var SearchPage = pv.behavior({
   'compx-search_query': [[], function () {
     return true;
   }],
-  // main_list_name: 'loads_list',
+  main_list_name: 'loads_list',
   model_name: 'loads_search_page',
   'nest_rqc-loads_list': '^loads/[:_id]',
   'nest_req-loads_list': [
@@ -20,10 +20,28 @@ var SearchPage = pv.behavior({
         name: null
       }
     }],
-    ['truckloads', [
+    ['#truckloads', [
       ['search_query'],
       function(api, opts, search_query) {
-        return api.get('/shipments/search', search_query, opts);
+        return api.post('/shipments/search', {
+            "query": {
+                "pickup": {
+                    "date_local": {
+                        "from": "2017-03-22T00:00:00",
+                        "to": "2017-03-22T23:59:59"
+                    }
+                },
+                "load_size": "full"
+            },
+            "options": {
+                "featured_first": false
+            },
+            "sort": [{
+                "age": "asc"
+            }],
+            "limit": 200,
+            "offset": 0
+        }, opts);
       }
     ]]
   ]

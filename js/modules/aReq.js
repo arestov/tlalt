@@ -15,7 +15,7 @@ var create_jsonp_callback;
 	};
 })();
 var async_script_support = "async" in window.document.createElement("script");
-var xhr2_support = window.XMLHttpRequest && "withCredentials" in (new XMLHttpRequest());  //https://gist.github.com/1431660
+var xhr2_support = window.XMLHttpRequest && "withCredentials" in (new window.XMLHttpRequest());  //https://gist.github.com/1431660
 var aReq = function(options){
 	if (options.dataType != "jsonp"){
 		return $.ajax(options);
@@ -97,7 +97,7 @@ var aReq = function(options){
 			script = window.document.createElement("script");
 			script.async = true;
 			script.onload = function(){
-				//window.document.window.documentElement.firstChild.removeChild(script);
+				//window.document.documentElement.firstChild.removeChild(script);
 
 
 
@@ -106,7 +106,7 @@ var aReq = function(options){
 				deferred.reject();
 			};
 			script.src = full_url;
-			window.document.window.documentElement.firstChild.insertBefore(script, window.document.window.documentElement.firstChild.firstChild);
+			window.document.documentElement.firstChild.insertBefore(script, window.document.documentElement.firstChild.firstChild);
 		};
 
 		if (async_script_support){
