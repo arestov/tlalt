@@ -17,6 +17,16 @@ var SearchPage = pv.behavior({
       source: 'items',
       props_map: {
         id: 'id',
+        broker: null,
+        age: null,
+        equipment: null,
+        pickup: null,
+        price: null,
+        weight: null,
+        width: null,
+        drop_off: null,
+        load_size: null,
+        length: null,
       }
     }],
     ['#truckloads', [

@@ -208,11 +208,29 @@
 		</div>
 
 
+		
+
 		<div class="loads_search_page">
-		  <div class="" pv-nest="loads_list" pv-events="click:followTo">
-		    item
-		    <span pv-text="{{$index}}"></span>
-		    <span pv-text="{{id}}"></span>
+		  Pickup		Dh-O	Origin	Destination	Trip <br>
+		  Truck	Size Weight	Length <br>
+		  Age			Broker	Price <br>
+		  <div class="loads_search_page-item" pv-nest="loads_list" pv-events="click:followTo">
+		    <span pv-text="{{pickup.date_local}}"></span>
+		    <span pv-text="{{pickup.deadhead}}"></span>
+		    <span pv-text="{{pickup.address.city}}"></span>
+		    <span pv-text="{{drop_off.address.city}}"></span>
+		    <span>?</span>
+
+		    <br>
+		    <span pv-text="{{equipment}}"></span>
+		    <span pv-text="{{load_size}}"></span>
+		    <span pv-text="{{weight}}"></span>
+		    <span pv-text="{{length}}"></span>
+		    <br>
+
+		    <span pv-text="{{age}}"></span>
+		    <span pv-text="{{broker.company}}"></span>
+		    <span pv-text="{{price}}"></span>
 		  </div>
 		</div>
 
