@@ -24,7 +24,7 @@
   border: 1px dashed transparent;
   }
 
-.theme--dark .area_for_button{
+.theme--tp .area_for_button{
   border-color: #616161;
 }
 
@@ -35,7 +35,7 @@
     min-height: 1.5rem;
     }
 
-  .theme--dark .area_for_button .area-button{
+  .theme--tp .area_for_button .area-button{
   border-color: transparent;
 }
 
@@ -49,7 +49,7 @@
 
     color: transparent;
     }
-  .theme--dark .area_for_button .area-description{
+  .theme--tp .area_for_button .area-description{
   color: hsl(0, 0%, 55%);
 }
   .access-request .area_for_button .area-description {
@@ -85,7 +85,7 @@
         background: transparent;
         border-radius: 50%;
       }
-      .theme--dark .desc_prevw_list .desc_item-imgcon{
+      .theme--tp .desc_prevw_list .desc_item-imgcon{
   background-color: #666;
 }
       .desc_item-imgcon img{
@@ -98,7 +98,7 @@
     background-image: none;
     background-color: transparent;
     }
-  .theme--dark .area_for_button.surf_nav .area-button{
+  .theme--tp .area_for_button.surf_nav .area-button{
   border-color: transparent;
   background-color: transparent;
 }
@@ -132,7 +132,7 @@
   color: transparent;
 
   }
-.theme--dark .area-button{
+.theme--tp .area-button{
   border-color: #616161;
   color: hsl(0, 0%, 70%);
 }
@@ -156,8 +156,8 @@
     border-bottom: 1px solid transparent;
     background-image: linear-gradient(transparent,transparent);
     }
-  .theme--dark .area_for_button:hover,
-  .theme--dark .no_arfb .area-button:hover{
+  .theme--tp .area_for_button:hover,
+  .theme--tp .no_arfb .area-button:hover{
   background-color: #4f4f4f;
   border-color: transparent;
   border-top-color: #5E5E5E;
@@ -171,8 +171,8 @@
     background-image: none;
     box-shadow: inset 0 0 10px 1px transparent;
     }
-  .theme--dark .area_for_button:active,
-  .theme--dark .no_arfb .area-button:active{
+  .theme--tp .area_for_button:active,
+  .theme--tp .no_arfb .area-button:active{
   border-color: transparent;
   box-shadow: inset 0 0 10px 1px #454545;
 }
@@ -180,7 +180,7 @@
     border-color: transparent;
     background-image: none;
     }
-  .theme--dark .no_arfb .area-button.surf_nav{
+  .theme--tp .no_arfb .area-button.surf_nav{
   border-color: transparent;
 }
 
@@ -205,13 +205,13 @@
     cursor: pointer;
     }
 
-  .theme--dark .arb-union .arb-ally{
+  .theme--tp .arb-union .arb-ally{
   border-color: transparent;
 }
     .arb-union .arb-ally:hover {
       background: transparent;
       }
-    .theme--dark .arb-union .arb-ally:hover{
+    .theme--tp .arb-union .arb-ally:hover{
   background-color: #555;
 }
 .button_selected{
@@ -221,7 +221,7 @@
   border-bottom: 1px solid transparent;
   cursor: default;
   }
-.theme--dark .button_selected{
+.theme--tp .button_selected{
   background-color: #444;
   border-color: transparent;
   border-top-color: #404040;

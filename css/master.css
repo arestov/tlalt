@@ -19,8 +19,8 @@ html, body{
   width: auto;
 }
 
-.theme--dark body{
-  color:#E6E6E6;
+.theme--tp body {
+  color: #333;
 }
 
 .hidden {display: none}
@@ -29,7 +29,7 @@ body .surf_nav{
   background-color: transparent;
   }
 
-.theme--dark body .surf_nav{
+.theme--tp body .surf_nav{
   background-color:#000;
   }
 

@@ -14,11 +14,10 @@
   font-family: "Trebuchet MS", sans-serif;
 
 }
-.theme--dark .navs{
-  border-bottom-color: #b6c2d0;
-  background-color: #d8e1e8;
-  background-image: linear-gradient(#f0f4f7,#d8e1e8);
-
+.theme--tp .navs{
+  border-bottom-color: #3a4046;
+  background-color: #3b5065;
+  color: #fff;
 }
 .daddy.not-inited * {
   display:none;
@@ -63,21 +62,21 @@
     background-color: transparent;
 
     }
-  .theme--dark .page-scheme .tags_list span:nth-of-type(even) a{
+  .theme--tp .page-scheme .tags_list span:nth-of-type(even) a{
   background-color: #4D4D4D;
 
 }
   .page-scheme .tags_list a:hover{
     background-color: transparent;
     }
-  .theme--dark .page-scheme .tags_list a:hover{
+  .theme--tp .page-scheme .tags_list a:hover{
   background-color: #535353;
 
 }
   #slider .page-scheme .tags_list a.surf_nav{
     background-color: transparent;
     }
-  .theme--dark #slider .page-scheme .tags_list a.surf_nav{
+  .theme--tp #slider .page-scheme .tags_list a.surf_nav{
   background-color: #000;
 
 }

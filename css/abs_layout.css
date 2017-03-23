@@ -7,7 +7,7 @@
 }
 
 
-.theme--dark.as-application:not(.chrome-extension) body{
+.theme--tp.as-application:not(.chrome-extension) body{
   background-color:transparent;
 }
 
@@ -64,7 +64,7 @@ html.opera-extension{
   background-color: transparent;
 }
 
-.theme--dark.as-application:not(.chrome-extension) #slider-materail{
+.theme--tp.as-application:not(.chrome-extension) #slider-materail{
   border-color:#666;
   background-color:#505050;
 }
