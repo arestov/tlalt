@@ -1,5 +1,7 @@
-define(function() {
+define(function(require) {
 "use strict";
+var dateFns = require('js/common-libs/date_fns.1.9.0.min.js');
+
 var filters = {
 	limitTo: function(input, limit) {
 		if (Array.isArray(input)){
@@ -14,6 +16,9 @@ var filters = {
 			return input;
 		}
 	},
+  formatDate: function(date, format) {
+		return dateFns.format(date, format);
+  },
 	notGIF: function(input) {
 		if (input.lastIndexOf('.gif') == input.length - 4){
 			return;

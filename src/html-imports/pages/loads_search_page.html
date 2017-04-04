@@ -14,7 +14,7 @@
   Truck	Size Weight	Length <br>
   Age			Broker	Price <br>
   <div class="loads_search_page-item" pv-nest="loads_list" pv-events="click:followTo">
-    <span pv-text="{{pickup.date_local}}"></span>
+    <span pv-text="{{pickup.date_local|formatDate:'MMM DD'}}"></span>
     <span pv-text="{{pickup.deadhead}}"></span>
     <span pv-text="{{pickup.address.city}}"></span>
     <span pv-text="{{drop_off.address.city}}"></span>
