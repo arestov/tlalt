@@ -215,22 +215,33 @@
 		  Truck	Size Weight	Length <br>
 		  Age			Broker	Price <br>
 		  <div class="loads_search_page-item" pv-nest="loads_list" pv-events="click:followTo">
-		    <span pv-text="{{pickup.date_local|formatDate:'MMM DD'}}"></span>
-		    <span pv-text="{{pickup.deadhead}}"></span>
-		    <span pv-text="{{pickup.address.city}}"></span>
-		    <span pv-text="{{drop_off.address.city}}"></span>
-		    <span>?</span>
+		    <div class="loads_search_page-item_row1">
+		      <span pv-text="{{pickup.date_local|formatDate:'MMM DD'}}"></span>
+		      <span pv-text="{{pickup.deadhead}}"></span>
+		      <span>
+		        <span pv-text="{{pickup.address.state}}"></span>
+		        <span pv-text="{{pickup.address.city}}"></span>
+		      </span>
+		      <span>
+		        <span pv-text="{{drop_off.address.state}}"></span>
+		        <span pv-text="{{drop_off.address.city}}"></span>
+		      </span>
 
-		    <br>
-		    <span pv-text="{{equipment}}"></span>
-		    <span pv-text="{{load_size}}"></span>
-		    <span pv-text="{{weight}}"></span>
-		    <span pv-text="{{length}}"></span>
-		    <br>
+		      <span>?</span>
+		    </div>
 
-		    <span pv-text="{{age}}"></span>
-		    <span pv-text="{{broker.company}}"></span>
-		    <span pv-text="{{price}}"></span>
+		    <div class="loads_search_page-item_row2">
+		      <span pv-text="{{equipment|shortEquipment}}"></span>
+		      <span pv-text="{{load_size}}"></span>
+		      <span pv-text="{{weight}}"></span>
+		      <span pv-text="{{length}}"></span>
+		    </div>
+
+		    <div class="loads_search_page-item_row3">
+		      <span pv-text="{{age}}"></span>
+		      <span pv-text="{{broker.company}}"></span>
+		      <span pv-text="{{price}}"></span>
+		    </div>
 		  </div>
 		</div>
 

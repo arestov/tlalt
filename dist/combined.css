@@ -1070,8 +1070,28 @@ html.opera-extension{
 		  }
 
 		  .loads_search_page-item {
-		    margin-top: 2em;
-		    border-bottom: 1px solid #ccc;
+		    padding: 0.3rem;
+		  }
+		  .loads_search_page-item:hover {
+		    cursor: pointer;
+		  }
+		  .loads_search_page-item:nth-child(even) {
+		    background: #efefef;
+		  }
+
+		  .loads_search_page-item_row1 {
+		    display: -webkit-box;
+		    display: flex;
+		  }
+
+		  .loads_search_page-item_row2 {
+		    display: -webkit-box;
+		    display: flex;
+		  }
+
+		  loads_search_page-item_row3 {
+		    display: -webkit-box;
+		    display: flex;
 		  }
 		
           #search{

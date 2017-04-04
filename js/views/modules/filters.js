@@ -2,6 +2,29 @@ define(function(require) {
 "use strict";
 var dateFns = require('js/common-libs/date_fns.1.9.0.min.js');
 
+var humanToId = {
+  'Flatbed': 'F',
+  'Van': 'V',
+  'Reefer': 'R',
+  'Stepdeck': 'SD',
+  'Power only': 'PO',
+  'Auto Carrier': 'AC',
+  'B-Train': 'BT',
+  'Conestoga': 'N',
+  'Containers': 'C',
+  'Double Drop': 'DD',
+  'Dry Bulk': 'B',
+  'Dump Trailer': 'DT',
+  'Hopper Bottom': 'HB',
+  'Lowboy': 'LB',
+  'Tanker': 'T',
+};
+
+var humanToIdLC = {};
+for (var name in humanToId) {
+  humanToIdLC[name.toLowerCase()] = humanToId[name];
+}
+
 var filters = {
 	limitTo: function(input, limit) {
 		if (Array.isArray(input)){
@@ -25,8 +48,19 @@ var filters = {
 		} else {
 			return input;
 		}
-	}
+	},
+  shortEquipment: function (input) {
+    if (Array.isArray(input)) {
+      return input.map(shortEquipment).join(' ');
+    }
+
+    return shortEquipment(input);
+  }
 };
+
+function shortEquipment(item) {
+  return humanToIdLC[item];
+}
 
 return filters;
 });
