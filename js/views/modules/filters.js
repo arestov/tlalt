@@ -55,6 +55,9 @@ var filters = {
     }
 
     return shortEquipment(input);
+  },
+  kilo: function (input) {
+    return (input/1000) + "k"
   }
 };
 

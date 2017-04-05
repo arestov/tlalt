@@ -242,6 +242,7 @@ body{
   color:transparent;
   font-family: Helvetica, Arial ,sans-serif;
   line-height: 1.5;
+  min-width: 320px;
   }
 
 html {
@@ -1066,33 +1067,119 @@ html.opera-extension{
 		}
 		
 		  .loads_search_page {
+		    padding: 2rem 0;
+		  }
+		  .page-scheme .loads_search_page {
+		    font-size: 0.8rem;
 
+		  }
+
+		  .loads_search_page-header {
+		    font-weight: 700;
 		  }
 
 		  .loads_search_page-item {
 		    padding: 0.3rem;
+
 		  }
-		  .loads_search_page-item:hover {
-		    cursor: pointer;
-		  }
-		  .loads_search_page-item:nth-child(even) {
-		    background: #efefef;
-		  }
+		    .loads_search_page-item + .loads_search_page-item {
+		      border-top: 1px solid hsla(0, 0%, 80%, 1);
+		    }
+		    .loads_search_page-item:hover {
+		      cursor: pointer;
+		    }
+
+		    .loads_search_page-item:nth-child(even) {
+		      background: #efefef;
+		    }
 
 		  .loads_search_page-item_row1 {
 		    display: -webkit-box;
 		    display: flex;
 		  }
+		    .loads_search_page-date {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-dho {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-pickup {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-drop_off {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-trip {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+
 
 		  .loads_search_page-item_row2 {
 		    display: -webkit-box;
 		    display: flex;
 		  }
+		    .loads_search_page-equipment {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-load_size {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-weight {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-length {
+		      width: 20%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
 
-		  loads_search_page-item_row3 {
+		  .loads_search_page-item_row3 {
 		    display: -webkit-box;
 		    display: flex;
 		  }
+		    .loads_search_page-age {
+		      width: 33%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-broker {
+		      width: 33%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
+		    .loads_search_page-price {
+		      width: 33%;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      white-space: nowrap;
+		    }
 		
           #search{
           	padding-top:1rem;
