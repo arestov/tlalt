@@ -36,7 +36,12 @@ var StartPage = spv.inh(BrowseMap.Model, {
   sub_page: {
     'search': {
       constr: SearchPage,
-      title: [[]],
+      title: [
+        [],
+        function () {
+          return "Search results";
+        }
+      ],
     },
   }
 });

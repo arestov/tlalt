@@ -132,7 +132,7 @@ var BrowseLevNavView = spv.inh(View, {}, {
     pioneer: {
       $default: nav.baseNavUI,
       start_page: nav.StartPageNavView,
-      invstg: nav.investgNavUI
+      // invstg: nav.investgNavUI
     }
   },
   'collch-pioneer': {
