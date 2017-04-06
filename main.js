@@ -3,6 +3,8 @@
 requirejs.config({
 	paths: {
 		jquery: 'js/common-libs/jquery-2.1.4.min',
+    'd3-geo': 'js/common-libs/d3-geo.1.6.3.min',
+    'd3-array': 'js/common-libs/d3-array.1.1.1.min',
 		angbo: 'js/libs/provoda/StatementsAngularParser.min',
 	},
 	map: {
