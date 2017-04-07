@@ -58,8 +58,52 @@ var filters = {
   },
   kilo: function (input) {
     return (input/1000) + "k"
-  }
+  },
+  formatDuration: formatTimeDuration,
 };
+
+function formatTimeDuration(milliseconds) {
+  var diffInMins = milliseconds / 1000 / 60;
+
+  if (diffInMins < 1) {
+    return '1m';
+  }
+
+  var hours = Math.trunc(diffInMins / 60);
+  var mins = Math.trunc(diffInMins % 60);
+  var days = Math.trunc(hours / 24);
+
+  var minsMsg = (mins === 1) ? '1m' : (mins + 'm');
+  var hoursMsg = (hours === 1) ? '1h' : (hours + 'h');
+  var daysMsg = days + 'd';
+
+  if (days >= 1) {
+    return daysMsg;
+  }
+
+  if (hours > 0) {
+    return hoursMsg;
+  }
+
+  if (hours === 0 && mins >= 1) {
+    return minsMsg;
+  }
+
+  return null;
+}
+
+function gradeAge(milliseconds) {
+  var diffInHours = milliseconds / 1000 / 60 / 60;
+  if (diffInHours > 24) {
+    return 'old';
+  }
+
+  if (diffInHours > 1) {
+    return 'ok';
+  }
+
+  return 'fresh';
+}
 
 function shortEquipment(item) {
   return humanToIdLC[item];
