@@ -56,7 +56,19 @@ var AppRoot = spv.inh(AppModelBase, {
       pvUpdate(this, 'search_query', query);
     },
   },
+  'api-interval_api': function () {
+    return setInterval;
+  },
+  'state-current_minute': [
+    ['interval_api'],
+    function (update, setInterval) {
+      update(Date.now());
 
+      setInterval(function () {
+        update(Date.now());
+      }, 60 * 1000);
+    }
+  ],
   model_name: 'app_root',
   checkActingRequestsPriority: function () {},
   trackPage: function () {},
