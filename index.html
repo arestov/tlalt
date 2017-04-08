@@ -271,26 +271,33 @@
 		</div>
 
 
+		
+
 		<div class="load_item">
 		  item
 		  <span pv-text="{{$index}}"></span>
 		  <span pv-text="{{id}}"></span>
+		  <br/>
+		  <div class="loadi-head">
+		    <span class="load_item-pickup">
+		      <span class="load_item-state" pv-text="{{pickup.address.state}}"></span>
+		      <span class="load_item-city" pv-text="{{pickup.address.city}}"></span>
+		      <br/>
+		      <span class="load_item-date" pv-text="{{pickup.date_local|formatDate:'MMM DD'}}"></span>
+		      <br/>
+		      <span class="load_item-dho" pv-text="{{pickup.deadhead || '-'}}"></span>
+		    </span>
+		    <span class="load_item-trip" pv-text="{{trip_length && (trip_length + ' mi')}}"></span>
+		    <span class="load_item-drop_off">
+		      <span class="load_item-state" pv-text="{{drop_off.address.state}}"></span>
+		      <span class="load_item-city" pv-text="{{drop_off.address.city}}"></span>
+		      <br/>
+		      <span class="load_item-date" pv-text="{{drop_off.date_local|formatDate:'MMM DD'}}"></span>
+		      <br/>
+		      <span class="load_item-dho" pv-text="{{drop_off.deadhead || '-'}}"></span>
+		    </span>
+		  </div>
 
-		  <span class="load_item-pickup">
-		    <span class="load_item-state" pv-text="{{pickup.address.state}}"></span>
-		    <span class="load_item-city" pv-text="{{pickup.address.city}}"></span>
-		    <span class="load_item-date" pv-text="{{pickup.date_local|formatDate:'MMM DD'}}"></span>
-		    <span class="load_item-dho" pv-text="{{pickup.deadhead}}"></span>
-		  </span>
-		  <br/>
-		  <span class="load_item-trip" pv-text="{{trip_length && (trip_length + ' mi')}}"></span>
-		  <br/>
-		  <span class="load_item-drop_off">
-		    <span class="load_item-state" pv-text="{{drop_off.address.state}}"></span>
-		    <span class="load_item-city" pv-text="{{drop_off.address.city}}"></span>
-		    <span class="load_item-date" pv-text="{{drop_off.date_local|formatDate:'MMM DD'}}"></span>
-		    <span class="load_item-dho" pv-text="{{drop_off.deadhead}}"></span>
-		  </span>
 		  <br/>
 		  <span class="load_item-broker" pv-text="{{broker.company}}"></span>
 		</div>

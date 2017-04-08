@@ -1182,6 +1182,15 @@ html.opera-extension{
 		      white-space: nowrap;
 		    }
 		
+		  .load_item {
+
+		  }
+
+		  .loadi-head {
+		    display: -webkit-box;
+		    display: flex;
+		  }
+		
           #search{
           	padding-top:1rem;
 
