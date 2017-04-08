@@ -68,9 +68,10 @@ window._gaq = window._gaq || [];
 				window.root_bwlev = BrowseMap.hookRoot(mpx.md);
 				var view = new AppView(options(), {d: doc, can_die: can_die, bwlev: window.root_bwlev});
 				mpx.addView(view, 'root');
+				window.root_view = view;
 				view.onDie(function() {
 					//views_proxies.removeSpaceById(proxies_space);
-					view = null;
+					window.root_view = view = null;
 				});
 				view.requestAll();
 			}
