@@ -20,7 +20,6 @@ return function(url, config) {
       timeout: 20000,
       resourceCachingAvailable: true,
       afterChange: function(opts) {
-        debugger;
         if (opts.dataType == 'json'){
           opts.headers = null;
         }
@@ -44,7 +43,7 @@ return function(url, config) {
   }
 
   return {
-    source_name: 'truckerpath',
+    source_name: 'truckerpath.com',
     errors_fields: ['api_errors'],
     get: function(resource, params, options) {
       return send('GET', resource, params, options);
