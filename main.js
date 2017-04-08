@@ -20,7 +20,8 @@ requirejs.config({
 			env: "js/env",
 
 			hex_md5: 'js/common-libs/md5',
-			'Promise': 'js/common-libs/Promise-3.1.0.mod'
+			'Promise': 'js/common-libs/Promise-3.1.0.mod',
+      config: 'js/config',
 		}
 	},
 	waitSeconds: window.tizen && 0
