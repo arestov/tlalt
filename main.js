@@ -2,6 +2,7 @@
 "use strict";
 requirejs.config({
 	paths: {
+    'async': 'js/common-libs/require/async',
 		jquery: 'js/common-libs/jquery-2.1.4.min',
     'd3-geo': 'js/common-libs/d3-geo.1.6.3.min',
     'd3-array': 'js/common-libs/d3-array.1.1.1.min',
@@ -22,6 +23,8 @@ requirejs.config({
 			hex_md5: 'js/common-libs/md5',
 			'Promise': 'js/common-libs/Promise-3.1.0.mod',
       config: 'js/config',
+      google_maps: 'js/common-libs/google_maps',
+      'google-maps': 'async!https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyAykKYM_Lu1c8i5gBeU-jH8JbIJJB4lVKw'
 		}
 	},
 	waitSeconds: window.tizen && 0

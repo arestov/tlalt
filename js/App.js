@@ -77,7 +77,6 @@ var AppRoot = spv.inh(AppModelBase, {
   decodeURLPart: route.decodeURLPart,
   joinCommaParts: route.joinCommaParts,
   getCommaParts: route.getCommaParts,
-
 });
 
 function resortAppQueue(app) {
