@@ -36,8 +36,8 @@ var SearchPage = pv.behavior({
             "query": {
                 "pickup": {
                     "date_local": {
-                        "from": "2017-03-22T00:00:00",
-                        "to": "2017-04-04T23:59:59"
+                        "from": "2017-04-09T00:00:00",
+                        "to": "2017-04-22T23:59:59"
                     }
                 },
                 "load_size": "full"
