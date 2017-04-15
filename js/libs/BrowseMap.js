@@ -5,6 +5,7 @@ var spv = require('spv');
 var get_constr = require('./provoda/structure/get_constr');
 var flatStruc = require('./provoda/structure/flatStruc');
 var routePathByModels = require('./provoda/routePathByModels');
+var updateProbe = require('./provoda/dcl/probe/updateProbe');
 
 var getSPIConstr = routePathByModels.getSPIConstr;
 var getSPI= routePathByModels.getSPI;
@@ -26,27 +27,13 @@ var getDeclrConstr = get_constr.getDeclrConstr;
 генерируемые плейлисты
 
 */
-var BrowseMap = spv.inh(pv.Model, {
-	naming: function(fn) {
-		return function BrowseMap(opts, params) {
-			fn(this, opts, params);
-		};
-	},
-	init: function(self, opts, params) {
-		self.bridge_bwlev = null;
-    // self.nav_tree = null;
 
-    if (!params.start){
-      throw new Error('give me 0 index level (start screen)');
-    }
-    self.mainLevelResident = params.start;
-
+function setStartBwlev(self, mainLevelResident) {
+	self.mainLevelResident = mainLevelResident;
 		self.start_bwlev = createLevel(-1, false, self.mainLevelResident, self);
-    self.chans_coll = [];
-    self.residents = [];
+}
 
-  },
-});
+var BrowseMap = {};
 
 function _goDeeper(map, md, parent_bwlev){
 	// без parent_bwlev нет контекста
@@ -81,7 +68,7 @@ function _goDeeper(map, md, parent_bwlev){
 };
 
 function createLevel(num, parent_bwlev, md, map) {
-	var bwlev = getBWlev(md, parent_bwlev, num, this);
+	var bwlev = getBWlev(md, parent_bwlev, num, map);
 	bwlev.map = map;
 	return bwlev;
 }
@@ -359,11 +346,13 @@ var BrowseLevel = spv.inh(pv.Model, {
 	},
 	init: function(self, opts, data, params, more, states) {
 		self.children_bwlevs = {};
-		self.model_name = states['model_name'];
 
-		if (!self.model_name) {
-			throw new Error('must have model name');
-		}
+		self._run_probes = null;
+		// self.model_name = states['model_name'];
+
+		// if (!self.model_name) {
+		// 	throw new Error('must have model name');
+		// }
 
     var pioneer = states['pioneer'];
 
@@ -378,6 +367,13 @@ var BrowseLevel = spv.inh(pv.Model, {
 		watchAndCollectProbes(self, pioneer);
 	}
 }, {
+	updateProbe: function(target_id, probe_name, value, probe_container_uri) {
+		updateProbe(this, target_id, probe_name, value, probe_container_uri);
+	},
+	toggleProbe: function(target_id, probe_name, value, probe_container_uri) {
+		updateProbe.toggleProbe(this, target_id, probe_name, value, probe_container_uri);
+	},
+	model_name: 'bwlev',
 	getParentMapModel: function() {
 		return this.map_parent;
 	},
@@ -459,7 +455,7 @@ var BrowseLevel = spv.inh(pv.Model, {
 		['@one:map_slice_view_sources:pioneer'],
 	],
 	'compx-struc': [
-		['#used_data_structure', '@pioneer', 'map_level_num'],
+		['@one:used_data_structure:map', '@pioneer', 'map_level_num'],
 		function(struc, pioneer, num) {
 			if (num == -2) {return}
 			if (!struc || !pioneer) {return;}
@@ -586,7 +582,7 @@ function getBWlev(md, parent_bwlev, map_level_num, map){
 
 	var bwlev = pv.create(BrowseLevel, {
 		map_level_num: map_level_num,
-		model_name: md.model_name,
+		// model_name: md.model_name,
 		pioneer: md
 	}, {
 		nestings: {
@@ -979,8 +975,13 @@ function changeBridge(bwlev) {
 	return bwlev;
 }
 
-function hookRoot(rootmd) {
-	return createLevel(-2, null, rootmd, null);
+function hookRoot(rootmd, start_page) {
+	var bwlev_root = createLevel(-2, null, rootmd, null);
+	if (start_page) {
+		setStartBwlev(bwlev_root, start_page);
+	}
+
+	return bwlev_root;
 }
 
 BrowseMap.hookRoot = hookRoot;

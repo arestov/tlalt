@@ -87,6 +87,7 @@ return {
 		if (spv.startsWith(api_name, '#')) {
 			return (app || sputnik.app)._interfaces_using.used[api_name.replace('#', '')];
 		}
+
 		return sputnik._interfaces_using.used[api_name];
 	},
 	getPropsPrefixChecker: utils.getPropsPrefixChecker,

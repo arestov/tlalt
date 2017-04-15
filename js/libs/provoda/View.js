@@ -10,6 +10,9 @@ var StatesEmitter = require('./StatesEmitter');
 var PvTemplate = require('./PvTemplate');
 var onPropsExtend = require('./onExtendView');
 var selectCollectionChange = require('./View/selectCollectionChange');
+var initProbes = require('./dcl_view/probe/init');
+var probeDestroy = require('./dcl_view/probe/destroy');
+var probeCheckChange = require('./dcl_view/probe/check-change');
 
 var pvUpdate = updateProxy.update;
 var cloneObj = spv.cloneObj;
@@ -77,6 +80,7 @@ var initView = function(target, view_otps, opts){
 	target.req_order_field = null;
 	target.tpl = null;
 	target.c = null;
+	target.probe_watchers = null;
 
 	target.dead = null;
 	target.pv_view_node = null;
@@ -139,26 +143,16 @@ var initView = function(target, view_otps, opts){
 
 	prsStCon.connect.parent(target);
 	prsStCon.connect.root(target);
+	initProbes(target);
 };
 
-var sources = function (item_source, sources_list) {
-	var arr = [];
-	if (item_source) {
-		arr.push(item_source);
+var changeProbeUniversal = function (method) {
+	return function () {
+		var bwlev_view = $v.getBwlevView(this);
+	  bwlev_view.RPCLegacy.apply(
+			bwlev_view, [method, this.mpx._provoda_id].concat(Array.prototype.slice.call(arguments, 2))
+		);
 	}
-	push.apply(arr, sources_list);
-
-	var index = spv.indexBy(arr);
-	return Object.keys(index);
-};
-
-var changeProbeUniversal = function (e, node, raw_args) {
-  var bwlev_view = $v.getBwlevView(this);
-
-  var args = raw_args.slice();
-  args.splice(1, 0, bwlev_view.mpx._provoda_id);
-
-  this.RPCLegacy.apply(this, args);
 }
 
 var View = spv.inh(StatesEmitter, {
@@ -195,25 +189,12 @@ var View = spv.inh(StatesEmitter, {
 			var md_id = this.mpx._provoda_id;
 			bwlev_view.RPCLegacy('followTo', md_id);
 		},
-    toggleProbe: changeProbeUniversal,
-		updateProbe: changeProbeUniversal,
+    toggleProbe: changeProbeUniversal('toggleProbe'),
+		updateProbe: changeProbeUniversal('updateProbe'),
 	},
 	onExtend: spv.precall(StatesEmitter.prototype.onExtend, function (md, props, original, params) {
 		return onPropsExtend(md, props, original, params);
 	}),
-	'stch-map_slice_view_sources': function(target, state) {
-		if (!state) {
-			return;
-		}
-
-		var wrap_parent = target.parent_view;
-		var bwlev_parent = wrap_parent && wrap_parent.parent_view;
-		if (bwlev_parent && bwlev_parent.parent_view == target.root_view && target.parent_view.location_name == 'pioneer-all-sufficient-details') {
-			pvUpdate(target, 'view_sources', sources(state[0], state[1][target.nesting_space]));
-		} else if (target.parent_view.parent_view == target.root_view && target.parent_view.nesting_name == 'map_slice') {
-			pvUpdate(target, 'view_sources', sources(state[0], state[1][target.nesting_space]));
-		}
-	},
 	getStrucRoot: function() {
 		return this.root_view;
 	},
@@ -901,6 +882,7 @@ var View = spv.inh(StatesEmitter, {
 			$(this.getC()).remove();
 			this.markAsDead(opts && opts.skip_md_call);
 			this._lbr.marked_as_dead = true;
+			probeDestroy(this);
 		}
 		return this;
 	},
@@ -1359,6 +1341,7 @@ var View = spv.inh(StatesEmitter, {
 		selectCollectionChange(target, nesname, items, removed, old_value);
 
 		target.checkDeadChildren();
+		probeCheckChange(target, nesname, items, rold_value, removed);
 		return target;
 	},
 	removeViewsByMds: function(array, nesname, space) {
