@@ -28,7 +28,7 @@ var values_map = {
 }
 
 var props = {
-	source: 'response.0',
+	source: 'response.0', // FIXME path is wrong
 	props_map: values_map
 };
 
