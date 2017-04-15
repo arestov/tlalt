@@ -11,10 +11,10 @@ var StartPageView = spv.inh(SPView, {}, {
     this.c = this.els.start_screen;
     this.createTemplate();
 
-
-    this.addWayPoint(this.tpl.ancs['hint-query'], {
-      //simple_check: true
-    });
+    //
+    // this.addWayPoint(this.tpl.ancs['hint-query'], {
+    //   //simple_check: true
+    // });
 
 
     var _this = this;
