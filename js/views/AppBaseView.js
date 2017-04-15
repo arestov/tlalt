@@ -943,7 +943,7 @@ var WebComplexTreesView = spv.inh(WebAppView, {}, {
   },
   'stch-show_search_form': function(target, state) {
     if (!state){
-      target.search_input[0].blur();
+      // target.search_input[0].blur();
     }
   },
   remove: function() {
