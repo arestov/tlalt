@@ -539,7 +539,7 @@ var AppBaseView = spv.inh(BrowserAppRootView, {}, {
     var all_changhes = spv.filter(transaction_data.array, 'changes');
       all_changhes = concatArray(all_changhes);
     var models = spv.filter(all_changhes, 'target');
-    var i;
+		var i, cur;
 
     if (!this.changes_number) {
       this.changes_number = 0;
@@ -631,6 +631,7 @@ var AppBaseView = spv.inh(BrowserAppRootView, {}, {
   'collch-map_slice': function(nesname, nesting_data, old_nesting_data){
     var mp_show_states = nesting_data.residents_struc.mp_show_states;
     var transaction = nesting_data.transaction;
+    var old_transaction = old_nesting_data && old_nesting_data.transaction;
 
     var diff = pv.hp.probeDiff(nesting_data.transaction.bwlev, old_nesting_data && old_nesting_data.transaction.bwlev);
 
@@ -747,7 +748,10 @@ var AppBaseView = spv.inh(BrowserAppRootView, {}, {
     }*/
 
     var bwlev = target.getNesting('current_mp_bwlev');
+		var parent_bwlev = bwlev.getParentMapModel();
     var md = target.getNesting('current_mp_md');
+
+
 
     setTimeout(function() {
       if (!target.isAlive()){
@@ -772,6 +776,11 @@ var AppBaseView = spv.inh(BrowserAppRootView, {}, {
         }
       }
     }, 150);
+
+
+
+
+
   }
 
 });
