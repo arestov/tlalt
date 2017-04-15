@@ -87,8 +87,7 @@ return {
 		if (spv.startsWith(api_name, '#')) {
 			return (app || sputnik.app)._interfaces_using.used[api_name.replace('#', '')];
 		}
-
-    return sputnik._interfaces_using.used[api_name];
+		return sputnik._interfaces_using.used[api_name];
 	},
 	getPropsPrefixChecker: utils.getPropsPrefixChecker,
 	_groupMotive: function(fn) {
@@ -196,14 +195,10 @@ return {
 						}
 					}
 
-					var isLocal = Boolean(cb_data[0])
+					var isLocal = Boolean(cb_data[0]);
 					var fnNameRaw = cb_data[0] || cb_data[1];
-					var argumentRaw = isLocal ? cb_data[1] : cb_data[2];
-					var argumentRawAnything = isLocal ? cb_data.hasOwnProperty(1) : cb_data.hasOwnProperty(2);
-
 					var target_view;
 					var fnName;
-					var argument;
 
 					if (spv.startsWith(fnNameRaw, '#')) {
 						target_view = view.root_view;
@@ -213,6 +208,8 @@ return {
 						target_view = view;
 					}
 
+					var args_list = cb_data.slice(isLocal ? 1 : 2).map(function (argumentRaw) {
+						var argument;
 					var stringed_variable = argumentRaw && argumentRaw.match(/\%(.*?)\%(.*)/);
 					if (!stringed_variable || !stringed_variable[2]) {
 						argument = argumentRaw;
@@ -233,18 +230,21 @@ return {
 							}
 						}
 					}
+						return argument;
+					});
 
 					if (!isLocal) {
-						if (argument == null && !argumentRawAnything) {
+						if (!args_list.length) {
 							target_view.handleTemplateRPC.call(target_view, fnName);
 							return;
 						}
-						target_view.handleTemplateRPC.call(target_view, fnName, argument);
+
+						target_view.handleTemplateRPC.apply(target_view, [fnName].concat(args_list));
 						return;
 					}
 
 					if (!e.pv_repeat_context){
-						target_view.tpl_events[fnName].call(target_view, e.event, e.node, argument);
+						target_view.tpl_events[fnName].apply(target_view, [e.event, e.node].concat(args_list));
 					} else {
 						target_view.tpl_r_events[e.pv_repeat_context][fnName].call(target_view, e.event, e.node, e.scope);
 					}
