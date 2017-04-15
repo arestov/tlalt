@@ -13,6 +13,24 @@ var po = function (obj) {
 // var earth_radius_meters = 6371000;
 var earth_radius_milis = 3963.1676;
 
+var values_map = {
+  id: 'id',
+  broker: null,
+  age: null,
+  equipment: null,
+  pickup: null,
+  price: null,
+  weight: null,
+  width: null,
+  drop_off: null,
+  load_size: null,
+  length: null,
+}
+
+var props = {
+	source: 'response.0',
+	props_map: values_map
+};
 
 var LoadItem = pv.behavior({
   'compx-nav_title': [['id']],
@@ -26,6 +44,16 @@ var LoadItem = pv.behavior({
     }
   ],
   req_map: [
+    [
+      Object.keys(values_map),
+      props,
+      ['#truckloads', [
+        ['id'],
+        function(api, opts, id) {
+          return api.get('/shipments/search/' + id, {}, opts);
+        }
+      ]]
+    ],
 		[
 			['route'],
 			function (r) {
