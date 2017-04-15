@@ -30,8 +30,8 @@ var StartPageView = spv.inh(SPView, {}, {
 
   tickCheckFocus: function() {
     if (this.isAlive()){
-      this.root_view.search_input[0].focus();
-      this.root_view.search_input[0].select();
+      // this.root_view.search_input[0].focus();
+      // this.root_view.search_input[0].select();
     }
   },
   // 'collch-muco': true,

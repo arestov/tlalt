@@ -325,42 +325,50 @@
   		<div class="app_map_con">
   			<div class="shared-parts">
           
-          <form class="">
+          <form id="search" class="load_search-form" pv-class="hidden: !show_search_form">
             <div class="">
-              <label>
-                Origin
-                <br/>
-                <input type="text" name="" value="">
-              </label>
-              <label>
-                Deadhead
-                <br>
-                <input type="text" name="" value="">
-              </label>
-              <label>
-                Destination
-                <br>
-                <input type="text" name="" value="">
-              </label>
-              <label>
-                Deadhead
-                <br>
-                <input type="text" name="" value="">
-              </label>
-              <label>
-                Pickup Date
-                <br>
-                <input type="date" name="" value="">
-              </label>
-              <label>
-                Equipment
-                <br>
-                <input type="text" name="" value="">
-              </label>
+              <div class="load_search_row_1">
+                <label class="load_search-origin">
+                  Origin
+                  <br/>
+                  <input type="text" name="" value="">
+                </label>
+                <label class="load_search-dho load_search-dh">
+                  Deadhead
+                  <br>
+                  <input type="text" name="" value="">
+                </label>
+                <label class="load_search-pickup_date">
+                  Pickup Date
+                  <br>
+                  <input type="date" name="" value="">
+                </label>
+                <label class="load_search-destination">
+                  Destination
+                  <br>
+                  <input type="text" name="" value="">
+                </label>
+                <label class="load_search-dhd load_search-dh">
+                  Deadhead
+                  <br>
+                  <input type="text" name="" value="">
+                </label>
+              </div>
+              <div class="load_search_row_2">
+                <label class="load_search-equipment">
+                  Equipment
+                  <br>
+                  <input type="text" name="" value="">
+                </label>
+                <label>size</label>
+                <label>weight</label>
+              </div>
+
+
+
             </div>
-          </form>
-          <form id="search" name="search" action='/o' method="get" class="" pv-class="hidden: !show_search_form">
             <!-- / google stat -->
+            <!--
             <p id="search-p">
               <label>
                 <span class='main_search_label lang localize-search-big' pv-class="hidden: search_query">Search</span>
@@ -371,6 +379,7 @@
               </label>
 
             </p>
+            -->
 
 
           </form>
@@ -394,16 +403,7 @@
             <div class="complex-page_material start-screen"
               id="start-screen" pv-foreign>
 
-              <p class="search-desc">
-                <span class="lang localize-trysearches desc">try to search</span>
-                <a
-                  id='hint-query'
-                  class="hint-query js-serv"
-                  pv-text="{{nice_artist_hint}}"
-                  pv-anchor='hint-query'
-                  pv-events="click::requestSearchHint mouseout::changeSearchHint">Query</a>
 
-              </p>
 
               <!--pv-replace sample_name:view_sources-->
             </div>
