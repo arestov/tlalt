@@ -70,14 +70,14 @@ var PvSimpleSampler = (function(){
         }
 
         if (cur !== 'pv-props') {
-          push.apply(states_list, bind_data.instructions[cur].sfy_values);
+					push.apply(states_list, bind_data.instructions[cur].sfy_values);
           continue;
         }
 
         for (var iii = 0; iii < bind_data.instructions['pv-props'].length; iii++) {
           var sub_cur = bind_data.instructions['pv-props'][iii].sfy_values;
           push.apply(states_list, sub_cur)
-        }
+				}
 			}
 		};
 

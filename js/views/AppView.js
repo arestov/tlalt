@@ -11,9 +11,27 @@ var AppBaseView = require('./AppBaseView');
 var WPBox = require('./modules/WPBox');
 var view_serv = require('view_serv');
 var View = require('View');
+var arrowsKeysNav = require('./utils/arrowsKeysNav');
 
 var pvUpdate = pv.update;
 
+function initRootView(root_view) {
+	root_view.all_queues = [];
+    var addQueue = function() {
+      this.reverse_default_prio = true;
+      root_view.all_queues.push(this);
+      return this;
+    };
+    var resortQueue = function(queue) {
+      root_view.resortQueue(queue);
+    };
+
+    root_view.somedomain_imgq = new FuncsQueue({
+      time: [700],
+      init: addQueue,
+      resortQueue: resortQueue
+    });
+}
 var AppExposedView = spv.inh(AppBaseView.BrowserAppRootView, {}, {
   location_name: 'exposed_root_view',
   'stch-doc_title': function(target, title) {
@@ -56,7 +74,6 @@ function changeFaviconNode(d, oldLink, src, type) {
   d.head.replaceChild(link, oldLink);
   return link;
 }
-
 
 var push = Array.prototype.push;
 
@@ -232,21 +249,7 @@ var AppView = spv.inh(AppBaseView.WebComplexTreesView, {}, {
 
     _this.dom_related_props.push('favicon_node', 'wp_box');
 
-    this.all_queues = [];
-    var addQueue = function() {
-      this.reverse_default_prio = true;
-      _this.all_queues.push(this);
-      return this;
-    };
-    var resortQueue = function(queue) {
-      _this.resortQueue(queue);
-    };
-
-    this.somedomain_imgq = new FuncsQueue({
-      time: [700],
-      init: addQueue,
-      resortQueue: resortQueue
-    });
+		initRootView(this);
 
     this.on('vip_state_change-current_mp_md', function() {
       var cwp = this.state('vis_current_wpoint');
@@ -445,7 +448,7 @@ var AppView = spv.inh(AppBaseView.WebComplexTreesView, {}, {
           }
         }
 
-        _this.arrowsKeysNav(e);
+        arrowsKeysNav(_this, e);
       };
 
       $(d).on('keydown', kd_callback);
@@ -460,33 +463,6 @@ var AppView = spv.inh(AppBaseView.WebComplexTreesView, {}, {
         d = null;
       });
   }),
-  inputs_names: ['input'],
-  key_codes_map:{
-    '13': 'Enter',
-    '37': 'Left',
-    '39': 'Right',
-    '40': 'Down',
-    '63233': 'Down',
-    '38': 'Up',
-    '63232': 'Up'
-  },
-  arrowsKeysNav: function(e) {
-    var key_name;
-
-    var allow_pd;
-    if (this.inputs_names.indexOf(e.target.nodeName.toLowerCase()) == -1){
-      allow_pd = true;
-    }
-    key_name = this.key_codes_map[e.keyCode];
-
-    if (key_name && allow_pd){
-      e.preventDefault();
-    }
-    if (key_name){
-      //this.RPCLegacy('keyNav', key_name);
-      this.wp_box.wayPointsNav(key_name, e);
-    }
-  },
   scrollToWP: function(cwp) {
     if (cwp){
       var cur_md_md = this.getNesting('current_mp_md');
@@ -509,47 +485,10 @@ var AppView = spv.inh(AppBaseView.WebComplexTreesView, {}, {
     }
   },
 
-  preloadImage: function(src, alt, callback, place){
-    var image = window.document.createElement('img');
-    if (alt){
-      image.alt= alt;
-    }
-
-    image.onload = function(){
-      if (callback){
-        callback(image);
-      }
-    };
-    if (place){
-      $(place).append(image);
-    }
-    image.src = src;
-    if (image.complete){
-      setTimeout(function(){
-        if (callback){
-          callback(image);
-        }
-      }, 10);
-
-    }
-    return image;
-  },
   trackEvent: function() {
     var args = Array.prototype.slice.apply(arguments);
     args.unshift('trackEvent');
     this.RPCLegacy.apply(this, args);
-  },
-
-  loadImage: function(opts) {
-    if (opts.url){
-      var queue;
-      if (opts.url.indexOf('somedomain.com') != -1){
-        queue = this.somedomain_imgq;
-      }
-      opts.timeout = opts.timeout || 40000;
-      opts.queue = opts.queue || queue;
-      return view_serv.loadImage(opts);
-    }
   },
 });
 
