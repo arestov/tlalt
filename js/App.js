@@ -10,6 +10,7 @@ var cache_ajax = require('cache_ajax');
 
 var AppModelBase = require('./models/AppModelBase');
 var StartPage = require('./models/StartPage');
+var SelectedPoints = require('./models/SelectedPoints');
 var initAPIs = require('./initAPIs');
 
 var pvUpdate = pv.update;
@@ -77,12 +78,29 @@ var AppRoot = spv.inh(AppModelBase, {
   decodeURLPart: route.decodeURLPart,
   joinCommaParts: route.joinCommaParts,
   getCommaParts: route.getCommaParts,
+  'probe-loads_search_context_1': {
+    main: ['nesting', {
+      place_of_current: 'action',
+      place_of_nav: null,
+    }],
+    steps_to_surface_limit: 1,
+  },
+  sub_page: {
+    'pickup-location': {
+      constr: SelectedPoints,
+      title: [[]],
+    },
+    'drop_off-location': {
+      constr: SelectedPoints,
+      title: [[]],
+    }
+  },
 });
 
 function resortAppQueue(app) {
-	return function resortQueue(queue) {
-		app.resortQueue(queue);
-	};
+  return function resortQueue(queue) {
+    app.resortQueue(queue);
+  };
 };
 
 function handleWindowURL(self, app_env, navi) {

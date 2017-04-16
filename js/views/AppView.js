@@ -195,6 +195,7 @@ var AppView = spv.inh(AppBaseView.WebComplexTreesView, {}, {
       invstg: nav.investgNavUI
     }
   },*/
+	'probe-loads_search_context_1': View,
   'sel-coll-map_slice/song': '$spec_det-map_slice',
   children_views: {
     map_slice: {
