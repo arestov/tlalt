@@ -59,28 +59,35 @@ window._gaq = window._gaq || [];
 
 	function initViews(appModel, proxies, win, can_die) {
 		//ui thread;
-		requirejs(['js/views/AppView', 'pv', 'spv', 'js/libs/BrowseMap'], function(AppView, pv, spv, BrowseMap) {
+		requirejs(['js/views/AppView', 'js/views/RootBwlevView', 'pv', 'spv', 'js/libs/BrowseMap'],
+    function(AppView, createRootBwlevView, pv, spv, BrowseMap) {
+
+
+      window.root_bwlev = BrowseMap.hookRoot(appModel);
 
 			var proxies_space = Date.now();
-			proxies.addSpaceById(proxies_space, appModel);
-			var mpx = proxies.getMPX(proxies_space, appModel);
+			proxies.addSpaceById(proxies_space, window.root_bwlev);
+			var mpx = proxies.getMPX(proxies_space, window.root_bwlev);
 			var doc = win.document;
 
 			initMainView();
 
 			function initMainView() {
-				window.root_bwlev = BrowseMap.hookRoot(mpx.md);
-				var view = new AppView(options(), {d: doc, can_die: can_die, bwlev: window.root_bwlev});
+
+        var RootView = createRootBwlevView(AppView);
+				var view = new RootView(options(false, mpx), {d: doc, can_die: can_die, bwlev: window.root_bwlev});
+
 				mpx.addView(view, 'root');
-				window.root_view = view;
 				view.onDie(function() {
 					//views_proxies.removeSpaceById(proxies_space);
 					window.root_view = view = null;
 				});
 				view.requestAll();
+
+        window.root_view = view;
 			}
 
-			function options(usual_flow) {
+			function options(usual_flow, mpx) {
 				return {
 					mpx: mpx,
 					proxies_space: proxies_space,
