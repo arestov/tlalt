@@ -31,6 +31,8 @@ return function (self, app_env, cache_ajax, resortQueue) {
 
   self.useInterface('google-maps', googleAPI(config.googleKey, google_maps));
   self.useInterface('google-directions-service', googleAPI(config.googleKey, new google_maps.DirectionsService()));
+  self.useInterface('google-places-service', googleAPI(config.googleKey, new google_maps.places.PlacesService(window.document.createElement('div'))));
+  self.useInterface('google-places-autocomplete-service', googleAPI(config.googleKey, new google_maps.places.AutocompleteService()));
 
   return addQueue;
 };
