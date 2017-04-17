@@ -34,7 +34,12 @@
       <label class="load_search-origin">
         Origin
         <br/>
-        <input type="text" name="" value="" pv-events="focus:updateProbe:loads_search_context_1:pickup-location">
+        <input
+          pv-events="
+            focus:updateProbe:loads_search_context_1:pickup-location
+            input::inputState:pickup_query:%node%value
+          "
+          type="text" name="" value="" >
       </label>
       <label class="load_search-dho load_search-dh">
         Deadhead
@@ -60,7 +65,12 @@
     <div class="lds_row_1_context">
       ^
       <div pv-nest="__run_probe_loads_search_context_1" pv-class="hidden: !current_md$exists" class="hidden">
-        1
+        <div class="" pv-nest="current_md for_model:selected-points">
+          select location
+          <div class="">
+            <span pv-nest="points_list">item</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="load_search_row_2">

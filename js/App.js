@@ -93,13 +93,13 @@ var AppRoot = spv.inh(AppModelBase, {
   sub_page: {
     'pickup-location': {
       constr: pv.behavior({
-        'compx-search_query': [['^pickup_query']]
+        'compx-search_query': [['#pickup_query']]
       }, SelectedPoints),
       title: [[]],
     },
     'drop_off-location': {
       constr: pv.behavior({
-        'compx-search_query': [['^drop_off_query']]
+        'compx-search_query': [['#drop_off_query']]
       }, SelectedPoints),
       title: [[]],
     }
