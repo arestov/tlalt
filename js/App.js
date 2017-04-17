@@ -39,6 +39,11 @@ var AppRoot = spv.inh(AppModelBase, {
   }
 }, {
   rpc_legacy: {
+    inputState: function(state_name, value) {
+      this.updateState(state_name, value);
+    },
+    // pickup_query
+    // drop_off_query
     changeSearchHint: function() {
       // pvUpdate(this, 'nice_artist_hint', this.app.popular_artists[(Math.random()*10).toFixed(0)]);
     },
@@ -87,11 +92,15 @@ var AppRoot = spv.inh(AppModelBase, {
   },
   sub_page: {
     'pickup-location': {
-      constr: SelectedPoints,
+      constr: pv.behavior({
+        'compx-search_query': [['^pickup_query']]
+      }, SelectedPoints),
       title: [[]],
     },
     'drop_off-location': {
-      constr: SelectedPoints,
+      constr: pv.behavior({
+        'compx-search_query': [['^drop_off_query']]
+      }, SelectedPoints),
       title: [[]],
     }
   },
